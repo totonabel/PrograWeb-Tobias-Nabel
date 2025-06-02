@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Lucía Ríos",
+    "especialidad": "Cocina Italiana",
+    "imagen": "lucia.jpg",
+    "descripcion": "Experta en pasta fresca y risottos auténticos. Más de 10 años de experiencia.",
+    "email": "lucia@chefs.com",
+    "platos": ["lucia1.jpg", "lucia2.jpg", "lucia3.jpg"]
+  },
+  {
+    "id": 2,
+    "nombre": "Fernando López",
+    "especialidad": "Parrilla Gourmet",
+    "imagen": "fernando.jpg",
+    "descripcion": "Asados de autor para ocasiones especiales. Fuego lento, sabor intenso.",
+    "email": "fernando@chefs.com",
+    "platos": ["fernando1.jpg", "fernando2.jpg", "fernando3.jpg"]
+  },
+  {
+    "id": 3,
+    "nombre": "Akira Yamamoto",
+    "especialidad": "Cocina Japonesa",
+    "imagen": "akira.jpg",
+    "descripcion": "Sushi, ramen y tradición. Con formación en Tokio y pasión por el detalle.",
+    "email": "akira@chefs.com",
+    "platos": ["akira1.jpg", "akira2.jpg", "akira3.jpg"]
+  }
+]

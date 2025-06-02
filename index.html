@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef en Casa</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Chef en Casa</h1>
+    <nav>
+      <ul>
+        <li><a href="#chefs">Chefs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Catálogo de chefs -->
+    <section id="chefs">
+      <h2>Elegí tu Chef</h2>
+      <div id="chef-container"></div>
+    </section>
+
+    <!-- Detalle de chef -->
+    <section id="detalle-chef" style="display: none;">
+      <div id="detalle-contenido"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Chef en Casa | Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Franja lateral -->
+  <div id="toggle-reservas">Mis reservas</div>
+
+  <!-- Panel lateral oculto -->
+  <aside id="reserva-lateral" class="cerrado">
+    <h3>Mis reservas</h3>
+    <ul id="lista-reservas"></ul>
+  </aside>
+  
+
+  <script src="main.js"></script>
+  <div id="toast" class="hidden">Reserva confirmada ✅</div>
+
+</body>
+</html>
