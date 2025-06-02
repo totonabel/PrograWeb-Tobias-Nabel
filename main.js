@@ -36,7 +36,7 @@ fetch('data/chefs.json')
             <label for="email">Tu email</label>
             <input type="email" name="email" required>
 
-            <label for="fecha">Ingrese la fecha </label>
+            <label for="fecha">Ingrese la fecha</label>
             <input type="date" name="fecha" required>
 
             <label for="hora">Ingrese la hora </label>
@@ -56,13 +56,37 @@ fetch('data/chefs.json')
         `;
 
         const form = document.getElementById("form-reserva");
-        form.addEventListener("submit", function(event) {
-          event.preventDefault(); // 👈 frena envío automático
-          guardarReserva(event, chef.nombre);
-          setTimeout(() => {
-            form.submit(); // 👈 luego se envía bien con todos los datos
-          }, 500);
+        form.addEventListener("submit", function (event) {
+  event.preventDefault(); 
+
+  const formData = new FormData(form);
+  const fecha = formData.get("fecha");
+  const hora = formData.get("hora");
+
+  const reserva = {
+    chef: chef.nombre,
+    fecha,
+    hora
+  };
+
+  let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+  reservas.push(reserva);
+  localStorage.setItem("reservas", JSON.stringify(reservas));
+
+  mostrarReservas();
+  mostrarToast("✅ Reserva confirmada");
+  document.getElementById("reserva-lateral").classList.remove("cerrado");
+
+  
+  setTimeout(() => {
+    form.submit();
+  }, 300);
+});
+
+
+          
         });
+
 
         detalle.scrollIntoView({ behavior: "smooth" });
       });
