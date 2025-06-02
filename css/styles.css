@@ -237,3 +237,25 @@ form button:hover {
 .volver-btn:hover {
   background-color: #bbb;
 }
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .chef-card {
+    width: 90%;
+  }
+
+  form label {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  form input,
+  form textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
