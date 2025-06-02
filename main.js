@@ -57,35 +57,35 @@ fetch('data/chefs.json')
 
         const form = document.getElementById("form-reserva");
         form.addEventListener("submit", function (event) {
-  event.preventDefault(); 
+          event.preventDefault(); 
 
-  const formData = new FormData(form);
-  const fecha = formData.get("fecha");
-  const hora = formData.get("hora");
+          const formData = new FormData(form);
+          const fecha = formData.get("fecha");
+          const hora = formData.get("hora");
 
-  const reserva = {
-    chef: chef.nombre,
-    fecha,
-    hora
-  };
+          const reserva = {
+            chef: chef.nombre,
+            fecha,
+            hora
+          };
 
-  let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-  reservas.push(reserva);
-  localStorage.setItem("reservas", JSON.stringify(reservas));
+          let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+          reservas.push(reserva);
+          localStorage.setItem("reservas", JSON.stringify(reservas));
 
-  mostrarReservas();
-  mostrarToast("✅ Reserva confirmada");
-  document.getElementById("reserva-lateral").classList.remove("cerrado");
+          mostrarReservas();
+          mostrarToast("✅ Reserva confirmada");
+          document.getElementById("reserva-lateral").classList.remove("cerrado");
 
-  
-  setTimeout(() => {
-    form.submit();
-  }, 300);
-});
+          
+          setTimeout(() => {
+            form.submit();
+          }, 300);
+        });
 
 
           
-        });
+        
 
 
         detalle.scrollIntoView({ behavior: "smooth" });
