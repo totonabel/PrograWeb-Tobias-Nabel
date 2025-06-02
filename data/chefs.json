@@ -56,7 +56,7 @@
     "imagen": "isa.jpg",
     "descripcion": "Postres elegantes y sofisticados, con experiencia en repostería francesa.",
     "email": "isabella@chefs.com",
-    "platos": ["isa1.jpg", "isa2.jpg", "isa3.jpg"],
+    "platos": ["isa1.jpg", "isa3.jpg", "isa2.jpg"],
     "precio": 76000
   },
   {
