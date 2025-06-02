@@ -23,6 +23,8 @@ fetch('data/chefs.json')
           <img src="img/${chef.imagen}" alt="${chef.nombre}" style="max-width: 300px;">
           <p><strong>Especialidad:</strong> ${chef.especialidad}</p>
           <p>${chef.descripcion}</p>
+          <p><strong>Precio:</strong> $${chef.precio}</p>
+
 
           <h4>Platos destacados</h4>
           <div class="galeria-platos">
