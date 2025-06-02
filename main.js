@@ -17,6 +17,7 @@ fetch('data/chefs.json')
 
       card.querySelector('.ver-mas').addEventListener('click', () => {
         detalle.style.display = 'block';
+
         contenido.innerHTML = `
           <h3>${chef.nombre}</h3>
           <img src="img/${chef.imagen}" alt="${chef.nombre}" style="max-width: 300px;">
@@ -28,13 +29,37 @@ fetch('data/chefs.json')
             ${chef.platos.map(plato => `<img src="img/${plato}" alt="Plato de ${chef.nombre}">`).join('')}
           </div>
 
-          <form onsubmit="guardarReserva(event, '${chef.nombre}')" action="https://formsubmit.co/tobinabel@gmail.com" method="POST">
-  
-          
+          <form id="form-reserva">
+            <label for="nombre">Tu nombre</label>
+            <input type="text" name="nombre" required>
 
+            <label for="email">Tu email</label>
+            <input type="email" name="email" required>
+
+            <label for="fecha">Ingrese la fecha</label>
+            <input type="date" name="fecha" required>
+
+            <label for="hora">Ingrese la hora</label>
+            <input type="time" name="hora" required>
+
+            <label for="mensaje">Mensaje adicional (opcional)</label>
+            <textarea name="mensaje"></textarea>
+
+            <input type="hidden" name="chef" value="${chef.nombre}">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://formsubmit.co/thanks.html">
+
+            <button type="submit">Reservar a ${chef.nombre}</button>
+          </form>
 
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
         `;
+
+        // Asignar comportamiento al formulario generado
+        const form = document.getElementById("form-reserva");
+        form.addEventListener("submit", function(event) {
+          guardarReserva(event, chef.nombre);
+        });
 
         detalle.scrollIntoView({ behavior: "smooth" });
       });
@@ -48,18 +73,25 @@ function guardarReserva(event, chefNombre) {
   event.preventDefault();
 
   const form = event.target;
-  const fecha = form.querySelector('[name="fecha"]').value;
-  const hora = form.querySelector('[name="hora"]').value;
+  const formData = new FormData(form);
 
-  const reserva = { chef: chefNombre, fecha, hora };
+  const fecha = formData.get("fecha");
+  const hora = formData.get("hora");
+
+  const reserva = {
+    chef: chefNombre,
+    fecha,
+    hora
+  };
+
   let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
   reservas.push(reserva);
   localStorage.setItem("reservas", JSON.stringify(reservas));
 
   mostrarReservas();
   mostrarToast("✅ Reserva confirmada");
+
   document.getElementById("reserva-lateral").classList.remove("cerrado");
-  form.reset();
 
   setTimeout(() => {
     form.submit();
