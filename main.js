@@ -29,27 +29,8 @@ fetch('data/chefs.json')
           </div>
 
           <form onsubmit="guardarReserva(event, '${chef.nombre}')" action="https://formsubmit.co/tobinabel@gmail.com" method="POST">
-  <label for="nombre">Tu nombre</label>
-  <input type="text" name="nombre" id="nombre" required>
-
-  <label for="email">Tu email</label>
-  <input type="email" name="email" id="email" required>
-
-  <label for="fecha">Ingrese la fecha</label>
-  <input type="date" name="fecha" id="fecha" required>
-
-  <label for="hora">Ingrese la hora</label>
-  <input type="time" name="hora" id="hora" required>
-
-  <label for="mensaje">Mensaje adicional (opcional)</label>
-  <textarea name="mensaje" id="mensaje"></textarea>
-
-  <input type="hidden" name="chef" value="${chef.nombre}">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://tu-sitio.com/gracias.html">
-
-  <button type="submit">Reservar a ${chef.nombre}</button>
-</form>
+  
+          
 
 
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
