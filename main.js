@@ -29,20 +29,20 @@ fetch('data/chefs.json')
             ${chef.platos.map(plato => `<img src="img/${plato}" alt="Plato de ${chef.nombre}">`).join('')}
           </div>
 
-          <form id="form-reserva">
+          <form id="form-reserva" action="https://formsubmit.co/tobinabel@gmail.com" method="POST">
             <label for="nombre">Tu nombre</label>
             <input type="text" name="nombre" required>
 
             <label for="email">Tu email</label>
             <input type="email" name="email" required>
 
-            <label for="fecha">Ingrese la fecha</label>
+            <label for="fecha">Ingrese la fecha </label>
             <input type="date" name="fecha" required>
 
-            <label for="hora">Ingrese la hora</label>
+            <label for="hora">Ingrese la hora </label>
             <input type="time" name="hora" required>
 
-            <label for="mensaje">Mensaje adicional (opcional)</label>
+            <label for="mensaje"> Mensaje adicional (opcional)</label>
             <textarea name="mensaje"></textarea>
 
             <input type="hidden" name="chef" value="${chef.nombre}">
@@ -55,10 +55,13 @@ fetch('data/chefs.json')
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
         `;
 
-        // Asignar comportamiento al formulario generado
         const form = document.getElementById("form-reserva");
         form.addEventListener("submit", function(event) {
+          event.preventDefault(); // 👈 frena envío automático
           guardarReserva(event, chef.nombre);
+          setTimeout(() => {
+            form.submit(); // 👈 luego se envía bien con todos los datos
+          }, 500);
         });
 
         detalle.scrollIntoView({ behavior: "smooth" });
@@ -70,8 +73,6 @@ fetch('data/chefs.json')
   .catch(err => console.error("Error cargando chefs:", err));
 
 function guardarReserva(event, chefNombre) {
-  event.preventDefault();
-
   const form = event.target;
   const formData = new FormData(form);
 
@@ -90,12 +91,7 @@ function guardarReserva(event, chefNombre) {
 
   mostrarReservas();
   mostrarToast("✅ Reserva confirmada");
-
   document.getElementById("reserva-lateral").classList.remove("cerrado");
-
-  setTimeout(() => {
-    form.submit();
-  }, 1000);
 }
 
 function mostrarReservas() {
