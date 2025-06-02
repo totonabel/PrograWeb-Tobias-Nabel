@@ -13,10 +13,10 @@
     "id": 2,
     "nombre": "Fernando López",
     "especialidad": "Parrilla Gourmet",
-    "imagen": "fer.jpg",
+    "imagen": "fernando.jpg",
     "descripcion": "Asados de autor para ocasiones especiales. Fuego lento, sabor intenso.",
     "email": "fernando@chefs.com",
-    "platos": ["fer1.jpg", "fer2.jpg", "fer3.jpg"],
+    "platos": ["fernando1.jpg", "fernando2.jpg", "fernando3.jpg"],
     "precio": 95000
   },
   {
