@@ -278,7 +278,6 @@ form button:hover {
   font-size: 24px;
   cursor: pointer;
   z-index: 3000;
-  animation: pulse 2s infinite;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
