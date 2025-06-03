@@ -167,3 +167,7 @@ function mostrarToast(mensaje) {
 function volverAlCatalogo() {
   document.getElementById("chefs").scrollIntoView({ behavior: "smooth" });
 }
+
+document.getElementById("faq-btn").addEventListener("click", function () {
+  document.getElementById("faq-panel").classList.toggle("hidden");
+});

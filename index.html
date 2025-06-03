@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chef en Casa</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 </head>
 <body>
 
@@ -44,6 +46,20 @@
     <h3>Mis reservas</h3>
     <ul id="lista-reservas"></ul>
   </aside>
+
+  <div id="faq-btn" class="animate__animated animate__pulse">?</div>
+
+<div id="faq-panel" class="hidden">
+  <h3>Preguntas Frecuentes</h3>
+  <ul>
+    <li><strong>¿Quiénes somos?</strong><br>Somos una empresa de chefs a domicilio donde tenemos distintos a disposición. Cada uno varía en precio y especialidad. Cuando reserves, uno irá a tu casa a cocinarte y enseñarte.</li>
+    <li><strong>¿Cómo reservo?</strong><br>Elegí un chef y completá el formulario con fecha y hora.</li>
+    <li><strong>¿Qué platos puedo elegir?</strong><br>Podés ver fotos de platos destacados en cada perfil.</li>
+    <li><strong>¿Qué incluye el servicio?</strong><br>Incluye compra de ingredientes, cocción y clase interactiva.</li>
+  </ul>
+  <button onclick="document.getElementById('faq-panel').classList.add('hidden')">Cerrar</button>
+</div>
+
   
 
   
