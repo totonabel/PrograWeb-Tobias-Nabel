@@ -277,8 +277,9 @@ form button:hover {
   font-weight: bold;
   font-size: 24px;
   cursor: pointer;
-  z-index: 3000;
+  z-index: 9999; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
 }
 
 #faq-panel {
