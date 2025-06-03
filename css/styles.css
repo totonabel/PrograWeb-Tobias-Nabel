@@ -277,6 +277,8 @@ form button:hover {
   font-size: 24px;
   cursor: pointer;
   z-index: 2000;
+  animation-name: animate__pulse;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
 }
 
