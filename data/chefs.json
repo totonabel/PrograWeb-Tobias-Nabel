@@ -7,7 +7,7 @@
     "descripcion": "Experta en pasta fresca y risottos auténticos. Más de 10 años de experiencia.",
     "email": "lucia@chefs.com",
     "platos": ["lucia1.jpg", "lucia2.jpg", "lucia3.jpg"],
-    "precio": 78000
+    "precio": "35.000 por persona"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "descripcion": "Asados de autor para ocasiones especiales. Fuego lento, sabor intenso.",
     "email": "fernando@chefs.com",
     "platos": ["fernando1.jpg", "fernando2.jpg", "fernando3.jpg"],
-    "precio": 95000
+    "precio": "40.000 por persona"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "descripcion": "Sushi, ramen y tradición. Con formación en Tokio y pasión por el detalle.",
     "email": "akira@chefs.com",
     "platos": ["akira1.jpg", "akira2.jpg", "akira3.jpg"],
-    "precio": 87000
+    "precio": "50.000 por persona"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "descripcion": "Especialista en paellas, tapas y platos tradicionales ibéricos.",
     "email": "marta@chefs.com",
     "platos": ["marta1.jpg", "marta2.jpg", "marta3.jpg"],
-    "precio": 69500
+    "precio": "30.000 por persona"
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@
     "descripcion": "Fusiona sabores amazónicos con técnicas modernas. Especialista en moquecas.",
     "email": "thiago@chefs.com",
     "platos": ["thiago1.jpg", "thiago2.jpg", "thiago3.jpg"],
-    "precio": 82000
+    "precio": "25000 por persona"
   },
   {
     "id": 6,
@@ -57,7 +57,7 @@
     "descripcion": "Postres elegantes y sofisticados, con experiencia en repostería francesa.",
     "email": "isabella@chefs.com",
     "platos": ["isa1.jpg", "isa3.jpg", "isa2.jpg"],
-    "precio": 76000
+    "precio": "20.000 por persona"
   },
   {
     "id": 7,
@@ -67,7 +67,7 @@
     "descripcion": "Recetas familiares con ingredientes locales. Tacos, moles y salsas únicas.",
     "email": "benjamin@chefs.com",
     "platos": ["ben1.jpg", "ben2.jpg", "ben3.jpg"],
-    "precio": 69000
+    "precio": "27.000 por persona"
   },
   {
     "id": 8,
@@ -77,7 +77,7 @@
     "descripcion": "Creatividad vegetal. Menús nutritivos y sostenibles de todo el mundo.",
     "email": "sofia@chefs.com",
     "platos": ["sofia1.jpg", "sofia2.jpg", "sofia3.jpg"],
-    "precio": 72000
+    "precio": "35.000 por persona"
   }
 ]
 
