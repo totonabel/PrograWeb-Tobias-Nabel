@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva Confirmada - Chef en Casa</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      animation: fadeIn 1s;
+    }
+    .success-icon {
+      font-size: 4rem;
+      color: #2e7d32;
+      margin-bottom: 20px;
+      animation: bounceIn 1s;
+    }
+    h1 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background-color: #ff7043;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #e2572e;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="success-icon animate__animated animate__bounceIn">✅</div>
+    <h1 class="animate__animated animate__fadeIn">¡Reserva Confirmada!</h1>
+    <p class="animate__animated animate__fadeIn animate__delay-1s">Tu reserva ha sido enviada exitosamente. Recibirás un email de confirmación en breve.</p>
+    <p class="animate__animated animate__fadeIn animate__delay-1s">Te contactaremos pronto para coordinar los detalles.</p>
+    <a href="index.html" class="btn animate__animated animate__fadeIn animate__delay-2s">Volver al inicio</a>
+  </div>
+</body>
+</html>

@@ -57,55 +57,71 @@ fetch('data/chefs.json')
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
         `;
 
-        const oldForm = document.getElementById("form-reserva");
-        const newForm = oldForm.cloneNode(true);  
-        oldForm.replaceWith(newForm);
-
-        function handleSubmit(event) {
-          event.preventDefault();
+        const form = document.getElementById("form-reserva")
 
         
+        const newForm = form.cloneNode(true)
+        form.replaceWith(newForm)
 
-          const formData = new FormData(newForm);
-          const fecha = formData.get("fecha");
-          const hora = formData.get("hora");
+        newForm.addEventListener("submit", async (event) => {
+          event.preventDefault()
 
-          const reserva = {
-            chef: chef.nombre,
-            fecha,
-            hora
-          };
+          const submitBtn = newForm.querySelector('button[type="submit"]')
+          const originalText = submitBtn.textContent
+          submitBtn.disabled = true
+          submitBtn.textContent = "Enviando..."
 
-          let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-          reservas.push(reserva);
-          localStorage.setItem("reservas", JSON.stringify(reservas));
+          try {
+            
+            const formData = new FormData(newForm)
+            const reserva = {
+              id: Date.now(), // ID único para la reserva
+              chef: chef.nombre,
+              nombre: formData.get("nombre"),
+              email: formData.get("email"),
+              fecha: formData.get("fecha"),
+              hora: formData.get("hora"),
+              mensaje: formData.get("mensaje") || "",
+              precio: chef.precio,
+              fechaCreacion: new Date().toISOString(),
+            }
 
-          mostrarReservas();
-          mostrarToast("✅ Reserva confirmada");
-          document.getElementById("reserva-lateral").classList.remove("cerrado");
+            const reservas = JSON.parse(localStorage.getItem("reservas")) || []
+            reservas.push(reserva)
+            localStorage.setItem("reservas", JSON.stringify(reservas))
 
+       
+            mostrarReservas()
+            mostrarToast("✅ Reserva guardada, enviando email...")
+            document.getElementById("reserva-lateral").classList.remove("cerrado")
 
-          setTimeout(() => {
-            newForm.removeEventListener("submit", handleSubmit); 
-            newForm.submit(); 
-          }, 300);
-          
+            // 3. Enviar el email usando FormSubmit
+            const response = await fetch("https://formsubmit.co/tobinabel@gmail.com", {
+              method: "POST",
+              body: formData,
+            })
 
-        };
-        newForm.addEventListener("submit", handleSubmit);
+            if (response.ok) {
+              mostrarToast("✅ Reserva confirmada y email enviado")
+              newForm.reset() // Limpiar el formulario
+            } else {
+              throw new Error("Error al enviar email")
+            }
+          } catch (error) {
+            console.error("Error:", error)
+            mostrarToast("⚠️ Reserva guardada, pero error al enviar email")
+          } finally {
+            
+            submitBtn.disabled = false
+            submitBtn.textContent = originalText
+          }
+        })
 
+        detalle.scrollIntoView({ behavior: "smooth" })
+      })
 
-
-
-          
-        
-
-
-        detalle.scrollIntoView({ behavior: "smooth" });
-      });
-
-      container.appendChild(card);
-    });
+      container.appendChild(card)
+    })
   })
   .catch(err => console.error("Error cargando chefs:", err));
 
