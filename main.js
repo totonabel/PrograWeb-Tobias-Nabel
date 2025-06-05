@@ -82,7 +82,7 @@ fetch('data/chefs.json')
           
           setTimeout(() => {
             const submitBtn = form.querySelector('button[type="submit"]');
-            if (submitBtn) submitBtn.click(); // esto sí activa el POST
+            if (submitBtn) submitBtn.click(); 
           }, 300);
         });
 
