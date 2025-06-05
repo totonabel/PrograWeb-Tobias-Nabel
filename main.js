@@ -58,7 +58,7 @@ fetch('data/chefs.json')
         `;
 
         const form = document.getElementById("form-reserva");
-        form.addEventListener("submit", function (event) {
+        form.onsubmit = function (event) {
           event.preventDefault(); 
 
           const formData = new FormData(form);
