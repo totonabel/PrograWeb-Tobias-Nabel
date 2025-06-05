@@ -61,8 +61,10 @@ fetch('data/chefs.json')
         const newForm = oldForm.cloneNode(true);  
         oldForm.replaceWith(newForm);
 
-        newForm.onsubmit = function (event) {
+        function handleSubmit(event) {
           event.preventDefault();
+
+        
 
           const formData = new FormData(newForm);
           const fecha = formData.get("fecha");
@@ -84,9 +86,14 @@ fetch('data/chefs.json')
 
 
           setTimeout(() => {
-            newForm.submit();
+            newForm.removeEventListener("submit", handleSubmit); 
+            newForm.submit(); 
           }, 300);
+          
+
         };
+        newForm.addEventListener("submit", handleSubmit);
+
 
 
 
