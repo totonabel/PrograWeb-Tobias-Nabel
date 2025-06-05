@@ -1,22 +1,22 @@
-fetch('data/chefs.json')
-  .then(res => res.json())
-  .then(chefs => {
-    const container = document.getElementById('chef-container');
-    const detalle = document.getElementById('detalle-chef');
-    const contenido = document.getElementById('detalle-contenido');
+fetch("data/chefs.json")
+  .then((res) => res.json())
+  .then((chefs) => {
+    const container = document.getElementById("chef-container")
+    const detalle = document.getElementById("detalle-chef")
+    const contenido = document.getElementById("detalle-contenido")
 
-    chefs.forEach(chef => {
-      const card = document.createElement('div');
-      card.className = "chef-card";
+    chefs.forEach((chef) => {
+      const card = document.createElement("div")
+      card.className = "chef-card"
       card.innerHTML = `
         <img src="img/${chef.imagen}" alt="${chef.nombre}">
         <h3>${chef.nombre}</h3>
         <p>${chef.especialidad}</p>
         <button class="ver-mas">Ver más</button>
-      `;
+      `
 
-      card.querySelector('.ver-mas').addEventListener('click', () => {
-        detalle.style.display = 'block';
+      card.querySelector(".ver-mas").addEventListener("click", () => {
+        detalle.style.display = "block"
 
         contenido.innerHTML = `
           <h3>${chef.nombre}</h3>
@@ -25,10 +25,9 @@ fetch('data/chefs.json')
           <p>${chef.descripcion}</p>
           <p><strong>Precio:</strong> $${chef.precio}</p>
 
-
           <h4>Platos destacados</h4>
           <div class="galeria-platos">
-            ${chef.platos.map(plato => `<img src="img/${plato}" alt="Plato de ${chef.nombre}">`).join('')}
+            ${chef.platos.map((plato) => `<img src="img/${plato}" alt="Plato de ${chef.nombre}">`).join("")}
           </div>
 
           <form id="form-reserva" action="https://formsubmit.co/tobinabel@gmail.com" method="POST">
@@ -41,31 +40,34 @@ fetch('data/chefs.json')
             <label for="fecha">Ingrese la fecha</label>
             <input type="date" name="fecha" required>
 
-            <label for="hora">Ingrese la hora </label>
+            <label for="hora">Ingrese la hora</label>
             <input type="time" name="hora" required>
 
-            <label for="mensaje"> Mensaje adicional (opcional)</label>
+            <label for="mensaje">Mensaje adicional (opcional)</label>
             <textarea name="mensaje"></textarea>
 
             <input type="hidden" name="chef" value="${chef.nombre}">
+            <input type="hidden" name="precio" value="${chef.precio}">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://formsubmit.co/thanks.html">
+            <input type="hidden" name="_next" value="gracias.html">
+            <input type="hidden" name="_subject" value="Nueva Reserva de Chef - ${chef.nombre}">
 
             <button type="submit">Reservar a ${chef.nombre}</button>
           </form>
 
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
-        `;
+        `
 
+       
         const form = document.getElementById("form-reserva")
 
-        
         const newForm = form.cloneNode(true)
         form.replaceWith(newForm)
 
         newForm.addEventListener("submit", async (event) => {
           event.preventDefault()
 
+ 
           const submitBtn = newForm.querySelector('button[type="submit"]')
           const originalText = submitBtn.textContent
           submitBtn.disabled = true
@@ -75,7 +77,7 @@ fetch('data/chefs.json')
             
             const formData = new FormData(newForm)
             const reserva = {
-              id: Date.now(), // ID único para la reserva
+              id: Date.now(),
               chef: chef.nombre,
               nombre: formData.get("nombre"),
               email: formData.get("email"),
@@ -90,28 +92,33 @@ fetch('data/chefs.json')
             reservas.push(reserva)
             localStorage.setItem("reservas", JSON.stringify(reservas))
 
-       
+          
             mostrarReservas()
             mostrarToast("✅ Reserva guardada, enviando email...")
             document.getElementById("reserva-lateral").classList.remove("cerrado")
 
-            // 3. Enviar el email usando FormSubmit
-            const response = await fetch("https://formsubmit.co/tobinabel@gmail.com", {
-              method: "POST",
-              body: formData,
-            })
+           
+            const tempForm = document.createElement("form")
+            tempForm.action = "https://formsubmit.co/tobinabel@gmail.com"
+            tempForm.method = "POST"
+            tempForm.style.display = "none"
 
-            if (response.ok) {
-              mostrarToast("✅ Reserva confirmada y email enviado")
-              newForm.reset() // Limpiar el formulario
-            } else {
-              throw new Error("Error al enviar email")
+         
+            const formDataEntries = new FormData(newForm)
+            for (const [key, value] of formDataEntries.entries()) {
+              const input = document.createElement("input")
+              input.type = "hidden"
+              input.name = key
+              input.value = value
+              tempForm.appendChild(input)
             }
+
+            document.body.appendChild(tempForm)
+            tempForm.submit()
           } catch (error) {
             console.error("Error:", error)
             mostrarToast("⚠️ Reserva guardada, pero error al enviar email")
-          } finally {
-            
+           
             submitBtn.disabled = false
             submitBtn.textContent = originalText
           }
@@ -123,56 +130,60 @@ fetch('data/chefs.json')
       container.appendChild(card)
     })
   })
-  .catch(err => console.error("Error cargando chefs:", err));
+  .catch((err) => console.error("Error cargando chefs:", err))
 
 function mostrarReservas() {
-  const lista = document.getElementById("lista-reservas");
-  lista.innerHTML = "";
-  const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+  const lista = document.getElementById("lista-reservas")
+  lista.innerHTML = ""
+  const reservas = JSON.parse(localStorage.getItem("reservas")) || []
 
   reservas.forEach((r, index) => {
-    const li = document.createElement("li");
-    const texto = document.createElement("span");
-    texto.textContent = `Con ${r.chef} el ${r.fecha} a las ${r.hora}`;
-    const boton = document.createElement("button");
-    boton.textContent = "Eliminar";
-    boton.className = "cancelar-btn";
-    boton.onclick = () => cancelarReserva(index);
-    li.appendChild(texto);
-    li.appendChild(boton);
-    lista.appendChild(li);
-  });
+    const li = document.createElement("li")
+    const texto = document.createElement("span")
+    texto.textContent = `Con ${r.chef} el ${r.fecha} a las ${r.hora}`
+    const boton = document.createElement("button")
+    boton.textContent = "Eliminar"
+    boton.className = "cancelar-btn"
+    boton.onclick = () => cancelarReserva(index)
+    li.appendChild(texto)
+    li.appendChild(boton)
+    lista.appendChild(li)
+  })
 }
 
 function cancelarReserva(index) {
-  let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-  reservas.splice(index, 1);
-  localStorage.setItem("reservas", JSON.stringify(reservas));
-  mostrarReservas();
+  const reservas = JSON.parse(localStorage.getItem("reservas")) || []
+  reservas.splice(index, 1)
+  localStorage.setItem("reservas", JSON.stringify(reservas))
+  mostrarReservas()
+  mostrarToast("Reserva eliminada")
 }
 
-document.addEventListener("DOMContentLoaded", mostrarReservas);
+document.addEventListener("DOMContentLoaded", mostrarReservas)
 
 document.getElementById("toggle-reservas").addEventListener("click", () => {
-  const panel = document.getElementById("reserva-lateral");
-  panel.classList.toggle("cerrado");
-});
+  const panel = document.getElementById("reserva-lateral")
+  panel.classList.toggle("cerrado")
+})
 
 function mostrarToast(mensaje) {
-  const toast = document.getElementById("toast");
-  toast.textContent = mensaje;
-  toast.classList.remove("hidden");
-  toast.classList.add("visible");
+  const toast = document.getElementById("toast")
+  toast.textContent = mensaje
+  toast.classList.remove("hidden")
+  toast.classList.add("visible")
   setTimeout(() => {
-    toast.classList.remove("visible");
-    toast.classList.add("hidden");
-  }, 2000);
+    toast.classList.remove("visible")
+    toast.classList.add("hidden")
+  }, 3000)
 }
 
 function volverAlCatalogo() {
-  document.getElementById("chefs").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("chefs").scrollIntoView({ behavior: "smooth" })
 }
 
-document.getElementById("faq-btn").addEventListener("click", function () {
-  document.getElementById("faq-panel").classList.toggle("hidden");
-});
+// Si tienes el botón FAQ
+if (document.getElementById("faq-btn")) {
+  document.getElementById("faq-btn").addEventListener("click", () => {
+    document.getElementById("faq-panel").classList.toggle("hidden")
+  })
+}
