@@ -57,11 +57,14 @@ fetch('data/chefs.json')
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
         `;
 
-        const form = document.getElementById("form-reserva");
-        form.onsubmit = function (event) {
-          event.preventDefault(); 
+        const oldForm = document.getElementById("form-reserva");
+        const newForm = oldForm.cloneNode(true);  
+        oldForm.replaceWith(newForm);
 
-          const formData = new FormData(form);
+        newForm.onsubmit = function (event) {
+          event.preventDefault();
+
+          const formData = new FormData(newForm);
           const fecha = formData.get("fecha");
           const hora = formData.get("hora");
 
@@ -79,12 +82,12 @@ fetch('data/chefs.json')
           mostrarToast("✅ Reserva confirmada");
           document.getElementById("reserva-lateral").classList.remove("cerrado");
 
-          
+
           setTimeout(() => {
-            const submitBtn = form.querySelector('button[type="submit"]');
-            if (submitBtn) submitBtn.click(); 
+            newForm.submit();
           }, 300);
-        });
+        };
+
 
 
           
