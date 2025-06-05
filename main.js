@@ -99,28 +99,6 @@ fetch('data/chefs.json')
   })
   .catch(err => console.error("Error cargando chefs:", err));
 
-function guardarReserva(event, chefNombre) {
-  const form = event.target;
-  const formData = new FormData(form);
-
-  const fecha = formData.get("fecha");
-  const hora = formData.get("hora");
-
-  const reserva = {
-    chef: chefNombre,
-    fecha,
-    hora
-  };
-
-  let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-  reservas.push(reserva);
-  localStorage.setItem("reservas", JSON.stringify(reservas));
-
-  mostrarReservas();
-  mostrarToast("✅ Reserva confirmada");
-  document.getElementById("reserva-lateral").classList.remove("cerrado");
-}
-
 function mostrarReservas() {
   const lista = document.getElementById("lista-reservas");
   lista.innerHTML = "";
