@@ -297,7 +297,6 @@ form button:hover {
   display: none;
 }
 
-/* ESTILOS DEL MODAL (AGREGADOS) */
 .modal-overlay {
   position: fixed;
   top: 0;
