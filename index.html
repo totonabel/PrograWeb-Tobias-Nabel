@@ -6,7 +6,6 @@
   <title>Chef en Casa</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
 </head>
 <body>
 
@@ -21,36 +20,32 @@
 
   <main>
 
-    <!-- Catálogo de chefs    -->
     <section id="chefs">
       <h2>Elegí tu Chef</h2>
       <div id="chef-container"></div>
     </section>
 
-    <!-- Detalle de chef -->
+    
     <section id="detalle-chef" style="display: none;">
       <div id="detalle-contenido"></div>
     </section>
-
   </main>
 
   <footer>
     <p>&copy; 2025 Chef en Casa | Todos los derechos reservados</p>
   </footer>
 
-  <!-- Franja lateral -->
+  
   <div id="toggle-reservas">Mis reservas</div>
 
-  <!-- Panel lateral oculto -->
+
+
   <aside id="reserva-lateral" class="cerrado">
     <h3>Mis reservas</h3>
     <ul id="lista-reservas"></ul>
   </aside>
 
   <div id="faq-btn" class="animate__animated animate__pulse">?</div>
-
-
-
 
   <div id="faq-panel" class="hidden">
     <div class="faq-content">
@@ -65,10 +60,18 @@
     </div>
   </div>
 
+ 
+  <div id="modal-confirmacion" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="success-icon">✅</div>
+      <h2>¡Reserva Confirmada!</h2>
+      <p>Tu reserva ha sido enviada exitosamente.</p>
+      <p>Recibirás un email de confirmación en breve.</p>
+      <p>Te contactaremos pronto para coordinar los detalles.</p>
+      <button onclick="cerrarModal()" class="btn-modal">Continuar</button>
+    </div>
+  </div>
 
-  
-
-  
   <div id="toast" class="hidden">Reserva confirmada ✅</div>
   <script src="main.js"></script>
 
