@@ -30,7 +30,7 @@ fetch("data/chefs.json")
             ${chef.platos.map((plato) => `<img src="img/${plato}" alt="Plato de ${chef.nombre}">`).join("")}
           </div>
 
-          <form method="POST" action="https://formsubmit.co/tobinabel@gmail.com" id="form-reserva">
+          <form id="form-reserva">
             <label for="nombre">Tu nombre</label>
             <input type="text" name="nombre" required>
 
@@ -46,83 +46,99 @@ fetch("data/chefs.json")
             <label for="mensaje">Mensaje adicional (opcional)</label>
             <textarea name="mensaje"></textarea>
 
-            <input type="hidden" name="chef" value="${chef.nombre}">
-            <input type="hidden" name="precio" value="${chef.precio}">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Nueva Reserva de Chef - ${chef.nombre}">
-
             <button type="submit">Reservar a ${chef.nombre}</button>
           </form>
 
           <button onclick="volverAlCatalogo()" class="volver-btn">⬅ Volver al catálogo</button>
         `
 
-      
         const form = document.getElementById("form-reserva")
-        form.addEventListener("submit", (event) => {
-      
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault()
 
           const submitBtn = form.querySelector('button[type="submit"]')
+          const originalText = submitBtn.textContent
           submitBtn.disabled = true
           submitBtn.textContent = "Enviando..."
 
-         
-          const formData = new FormData(form)
-          const reserva = {
-            id: Date.now(),
-            chef: chef.nombre,
-            nombre: formData.get("nombre"),
-            email: formData.get("email"),
-            fecha: formData.get("fecha"),
-            hora: formData.get("hora"),
-            mensaje: formData.get("mensaje") || "",
-            precio: chef.precio,
-            fechaCreacion: new Date().toISOString(),
-          }
-
-          const reservas = JSON.parse(localStorage.getItem("reservas")) || []
-          reservas.push(reserva)
-          localStorage.setItem("reservas", JSON.stringify(reservas))
-
-          mostrarReservas()
-          mostrarToast("✅ Reserva guardada y enviando email...")
-          document.getElementById("reserva-lateral").classList.remove("cerrado")
-
-          
-          setTimeout(() => {
-            const tempForm = document.createElement("form")
-            tempForm.method = "POST"
-            tempForm.action = "https://formsubmit.co/tobinabel@gmail.com"
-            tempForm.style.display = "none"
-
+          try {
            
-            const inputs = [
-              { name: "nombre", value: formData.get("nombre") },
-              { name: "email", value: formData.get("email") },
-              { name: "fecha", value: formData.get("fecha") },
-              { name: "hora", value: formData.get("hora") },
-              { name: "mensaje", value: formData.get("mensaje") || "" },
-              { name: "chef", value: chef.nombre },
-              { name: "precio", value: chef.precio },
-              { name: "_captcha", value: "false" },
-              { name: "_subject", value: `Nueva Reserva de Chef - ${chef.nombre}` },
-              { name: "_next", value: window.location.href + "#confirmacion" },
-            ]
+            const formData = new FormData(form)
+            const reserva = {
+              id: Date.now(),
+              chef: chef.nombre,
+              nombre: formData.get("nombre"),
+              email: formData.get("email"),
+              fecha: formData.get("fecha"),
+              hora: formData.get("hora"),
+              mensaje: formData.get("mensaje") || "",
+              precio: chef.precio,
+              fechaCreacion: new Date().toISOString(),
+            }
 
-            inputs.forEach((input) => {
-              const hiddenInput = document.createElement("input")
-              hiddenInput.type = "hidden"
-              hiddenInput.name = input.name
-              hiddenInput.value = input.value
-              tempForm.appendChild(hiddenInput)
+            const reservas = JSON.parse(localStorage.getItem("reservas")) || []
+            reservas.push(reserva)
+            localStorage.setItem("reservas", JSON.stringify(reservas))
+
+            mostrarReservas()
+            document.getElementById("reserva-lateral").classList.remove("cerrado")
+
+            // 2. Enviar email con Web3Forms
+            const emailData = {
+              access_key: "9934d107-d809-40ff-8b71-3f1c4a641693",
+              name: formData.get("nombre"),
+              email: formData.get("email"),
+              subject: `Nueva Reserva de Chef - ${chef.nombre}`,
+              message: `
+ NUEVA RESERVA DE CHEF 
+
+Chef: ${chef.nombre}
+Especialidad: ${chef.especialidad}
+Precio: $${chef.precio}
+
+ DATOS DEL CLIENTE:
+• Nombre: ${formData.get("nombre")}
+• Email: ${formData.get("email")}
+• Fecha: ${formData.get("fecha")}
+• Hora: ${formData.get("hora")}
+
+Mensaje adicional:
+${formData.get("mensaje") || "Sin mensaje adicional"}
+
+---
+Reserva realizada el: ${new Date().toLocaleString()}
+              `,
+              from_name: "Chef en Casa - Sistema de Reservas",
+              to: "tobinabel@gmail.com",
+            }
+
+            const response = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(emailData),
             })
 
-            document.body.appendChild(tempForm)
-            tempForm.submit()
-          }, 500)
+            const result = await response.json()
 
-      
-          event.preventDefault()
+            if (result.success) {
+             
+              document.getElementById("modal-confirmacion").classList.remove("hidden")
+              form.reset()
+              mostrarToast("✅ Email enviado correctamente")
+            } else {
+              throw new Error(result.message || "Error al enviar email")
+            }
+          } catch (error) {
+            console.error("Error:", error)
+            mostrarToast("⚠️ Reserva guardada, pero error al enviar email")
+            
+            document.getElementById("modal-confirmacion").classList.remove("hidden")
+          } finally {
+            submitBtn.disabled = false
+            submitBtn.textContent = originalText
+          }
         })
 
         detalle.scrollIntoView({ behavior: "smooth" })
@@ -132,15 +148,6 @@ fetch("data/chefs.json")
     })
   })
   .catch((err) => console.error("Error cargando chefs:", err))
-
-
-window.addEventListener("load", () => {
-  if (window.location.hash === "#confirmacion") {
-    document.getElementById("modal-confirmacion").classList.remove("hidden")
- 
-    history.replaceState(null, null, window.location.pathname)
-  }
-})
 
 function cerrarModal() {
   document.getElementById("modal-confirmacion").classList.add("hidden")
