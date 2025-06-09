@@ -83,7 +83,7 @@ fetch("data/chefs.json")
             mostrarReservas()
             document.getElementById("reserva-lateral").classList.remove("cerrado")
 
-            // 2. Enviar email con Web3Forms
+            
             const emailData = {
               access_key: "9934d107-d809-40ff-8b71-3f1c4a641693",
               name: formData.get("nombre"),
