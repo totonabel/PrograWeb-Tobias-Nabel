@@ -454,3 +454,50 @@ form button:hover {
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
+
+
+
+@media (max-width: 600px) {
+  header {
+    padding: 12px;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  #chef-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px;
+  }
+  .chef-card {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  #detalle-chef {
+    padding: 12px;
+    margin: 10px auto;
+    max-width: 98vw;
+  }
+  .modal-content {
+    padding: 16px;
+    max-width: 95vw;
+  }
+  #reserva-lateral {
+    width: 90vw;
+    right: 0;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+  }
+  #btn-top {
+    right: 10px;
+    bottom: 70px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
