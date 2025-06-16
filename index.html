@@ -10,44 +10,41 @@
 <body>
 
   <header>
-    <h1>Chef en Casa</h1>
-    <nav>
-      <ul>
-        <li><a href="#chefs">Chefs</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <h1>Chef en Casa</h1>
+      <nav>
+        <ul>
+          <li><a href="#chefs">Chefs</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
-
     <section id="chefs">
       <h2>Elegí tu Chef</h2>
       <div id="chef-container"></div>
     </section>
 
-    
     <section id="detalle-chef" style="display: none;">
       <div id="detalle-contenido"></div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Chef en Casa | Todos los derechos reservados</p>
-  </footer>
-
-  
-  <div id="toggle-reservas">Mis reservas</div>
-
-
-
-  <aside id="reserva-lateral" class="cerrado">
+  <aside id="reserva-lateral" class="cerrado" aria-label="Reservas">
     <h3>Mis reservas</h3>
     <ul id="lista-reservas"></ul>
   </aside>
 
-  <div id="faq-btn" class="animate__animated animate__pulse">?</div>
+  <footer>
+    <p>&copy; 2025 Chef en Casa | Todos los derechos reservados</p>
+  </footer>
 
-  <div id="faq-panel" class="hidden">
+  <button id="toggle-reservas" type="button" aria-controls="reserva-lateral">Mis reservas</button>
+
+  <button id="faq-btn" class="animate__animated animate__pulse" aria-controls="faq-panel" aria-expanded="false">?</button>
+
+  <section id="faq-panel" class="hidden" aria-hidden="true">
     <div class="faq-content">
       <h3>Preguntas Frecuentes</h3>
       <ul>
@@ -56,23 +53,22 @@
         <li><strong>¿Qué platos puedo elegir?</strong><br>Podés ver fotos de platos destacados en cada perfil.</li>
         <li><strong>¿Qué incluye el servicio?</strong><br>Incluye compra de ingredientes, cocción y clase interactiva.</li>
       </ul>
-      <button onclick="document.getElementById('faq-panel').classList.add('hidden')">Cerrar</button>
+      <button type="button" onclick="document.getElementById('faq-panel').classList.add('hidden')">Cerrar</button>
     </div>
-  </div>
+  </section>
 
- 
-  <div id="modal-confirmacion" class="modal-overlay hidden">
+  <section id="modal-confirmacion" class="modal-overlay hidden" aria-hidden="true">
     <div class="modal-content">
       <div class="success-icon">✅</div>
       <h2>¡Reserva Confirmada!</h2>
       <p>Tu reserva ha sido enviada exitosamente.</p>
       <p>Recibirás un email de confirmación en breve.</p>
       <p>Te contactaremos pronto para coordinar los detalles.</p>
-      <button onclick="cerrarModal()" class="btn-modal">Continuar</button>
+      <button type="button" onclick="cerrarModal()" class="btn-modal">Continuar</button>
     </div>
-  </div>
+  </section>
 
-  <div id="toast" class="hidden">Reserva confirmada ✅</div>
+  <div id="toast" class="hidden" role="status" aria-live="polite">Reserva confirmada ✅</div>
   <script src="main.js"></script>
 
 </body>
