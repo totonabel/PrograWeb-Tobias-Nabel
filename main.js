@@ -222,3 +222,20 @@ function configurarBotones() {
     })
   }
 }
+
+
+
+
+
+// Mostrar/ocultar botón "Volver arriba"
+window.addEventListener("scroll", () => {
+  const btn = document.getElementById("btn-top")
+  if (window.scrollY > 200) {
+    btn.style.display = "block"
+  } else {
+    btn.style.display = "none"
+  }
+})
+document.getElementById("btn-top").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" })
+})
