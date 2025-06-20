@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nombre": "akira",
+    "nombre": "Akira Yamamoto",
     "especialidad": "Cocina Internacional",
     "imagen": "akira.jpg",
     "descripcion": "Sabores asiáticos y fusión moderna.",
@@ -13,7 +13,7 @@
   },
   {
     "id": 2,
-    "nombre": "ben",
+    "nombre": "Ben Smith",
     "especialidad": "Repostería Creativa",
     "imagen": "ben.jpg",
     "descripcion": "Tortas, postres y dulces únicos.",
@@ -25,7 +25,7 @@
   },
   {
     "id": 3,
-    "nombre": "fernando",
+    "nombre": "Fernando Gómez",
     "especialidad": "Cocina Tradicional",
     "imagen": "fernando.jpg",
     "descripcion": "Platos clásicos y caseros.",
@@ -37,7 +37,7 @@
   },
   {
     "id": 4,
-    "nombre": "isa",
+    "nombre": "Isa Martínez",
     "especialidad": "Vegetariana Gourmet",
     "imagen": "isa.jpg",
     "descripcion": "Recetas vegetarianas llenas de color y sabor.",
@@ -49,7 +49,7 @@
   },
   {
     "id": 5,
-    "nombre": "lucia",
+    "nombre": "Lucia Rossi",
     "especialidad": "Cocina Italiana",
     "imagen": "lucia.jpg",
     "descripcion": "Pasta fresca y risottos auténticos.",
@@ -61,7 +61,7 @@
   },
   {
     "id": 6,
-    "nombre": "marta",
+    "nombre": "Marta Pérez",
     "especialidad": "Repostería Francesa",
     "imagen": "marta.jpg",
     "descripcion": "Pastelería fina y postres clásicos.",
@@ -73,7 +73,7 @@
   },
   {
     "id": 7,
-    "nombre": "sofia",
+    "nombre": "Sofia López",
     "especialidad": "Cocina Vegetariana",
     "imagen": "sofia.jpg",
     "descripcion": "Platos vegetarianos frescos y saludables.",
@@ -85,7 +85,7 @@
   },
   {
     "id": 8,
-    "nombre": "thiago",
+    "nombre": "Thiago Fernández",
     "especialidad": "Cocina Tradicional Argentina",
     "imagen": "thiago.jpg",
     "descripcion": "Empanadas, guisos y platos típicos.",
