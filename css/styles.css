@@ -547,8 +547,10 @@ form button:hover {
 
 .filtro-group {
   display: flex;
+  flex-direction: row; /* Esto es lo importante */
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap; /* Para que se acomoden si no entran */
 }
 
 .filtro-group label {
