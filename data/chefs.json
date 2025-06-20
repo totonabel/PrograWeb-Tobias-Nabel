@@ -7,7 +7,7 @@
     "descripcion": "Sabores asiáticos y fusión moderna.",
     "email": "akira@chefs.com",
     "platos": ["akira1.jpg", "akira2.jpg", "akira3.jpg"],
-    "precio": 35000,
+    "precio": 45000,
     "tipo": "internacional",
     "dulce": false
   },
@@ -19,7 +19,7 @@
     "descripcion": "Tortas, postres y dulces únicos.",
     "email": "ben@chefs.com",
     "platos": ["ben1.jpg", "ben2.jpg", "ben3.jpg"],
-    "precio": 22000,
+    "precio": 18000,
     "tipo": "reposteria",
     "dulce": true
   },
@@ -31,7 +31,7 @@
     "descripcion": "Platos clásicos y caseros.",
     "email": "fernando@chefs.com",
     "platos": ["fernando1.jpg", "fernando2.jpg", "fernando3.jpg"],
-    "precio": 26000,
+    "precio": 29000,
     "tipo": "tradicional",
     "dulce": false
   },
@@ -43,7 +43,7 @@
     "descripcion": "Recetas vegetarianas llenas de color y sabor.",
     "email": "isa@chefs.com",
     "platos": ["isa1.jpg", "isa2.jpg", "isa3.jpg"],
-    "precio": 31000,
+    "precio": 34000,
     "tipo": "vegetariana",
     "dulce": false
   },
@@ -55,7 +55,7 @@
     "descripcion": "Pasta fresca y risottos auténticos.",
     "email": "lucia@chefs.com",
     "platos": ["lucia1.jpg", "lucia2.jpg", "lucia3.jpg"],
-    "precio": 35000,
+    "precio": 48000,
     "tipo": "internacional",
     "dulce": false
   },
@@ -67,7 +67,7 @@
     "descripcion": "Pastelería fina y postres clásicos.",
     "email": "marta@chefs.com",
     "platos": ["marta1.jpg", "marta2.jpg", "marta3.jpg"],
-    "precio": 32000,
+    "precio": 27000,
     "tipo": "reposteria",
     "dulce": true
   },
@@ -79,7 +79,7 @@
     "descripcion": "Platos vegetarianos frescos y saludables.",
     "email": "sofia@chefs.com",
     "platos": ["sofia1.jpg", "sofia2.jpg", "sofia3.jpg"],
-    "precio": 30000,
+    "precio": 32000,
     "tipo": "vegetariana",
     "dulce": false
   },
@@ -91,7 +91,7 @@
     "descripcion": "Empanadas, guisos y platos típicos.",
     "email": "thiago@chefs.com",
     "platos": ["thiago1.jpg", "thiago2.jpg", "thiago3.jpg"],
-    "precio": 27000,
+    "precio": 22000,
     "tipo": "tradicional",
     "dulce": false
   }
