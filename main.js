@@ -1,5 +1,13 @@
+let chefsData = []
+let filtros = {
+  precioMin: null,
+  precioMax: null,
+  tipo: null
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   inicializarApp()
+  configurarFiltros()
 })
 
 async function inicializarApp() {
@@ -8,7 +16,6 @@ async function inicializarApp() {
   configurarBotones()
 }
 
-// CRUD de reservas en localStorage
 function obtenerReservas() {
   return JSON.parse(localStorage.getItem("reservas")) || []
 }
@@ -31,16 +38,60 @@ function eliminarReserva(index) {
   mostrarToast("Reserva eliminada")
 }
 
-// UI: Chefs y detalle
 async function cargarChefs() {
   try {
     const res = await fetch("data/chefs.json")
-    const chefs = await res.json()
-    const container = document.getElementById("chef-container")
-    container.innerHTML = ""
-    chefs.forEach((chef) => container.appendChild(crearChefCard(chef)))
+    chefsData = await res.json()
+    mostrarChefsFiltrados()
   } catch (err) {
     console.error("Error cargando chefs:", err)
+  }
+}
+
+function mostrarChefsFiltrados() {
+  const container = document.getElementById("chef-container")
+  container.innerHTML = ""
+  let filtrados = chefsData
+
+  // Filtrado por precio
+  if (filtros.precioMin !== null) {
+    filtrados = filtrados.filter(chef => chef.precio >= filtros.precioMin)
+  }
+  if (filtros.precioMax !== null) {
+    filtrados = filtrados.filter(chef => chef.precio <= filtros.precioMax)
+  }
+  // Filtrado por tipo
+  if (filtros.tipo) {
+    filtrados = filtrados.filter(chef => chef.tipo === filtros.tipo)
+  }
+
+  if (filtrados.length === 0) {
+    container.innerHTML = "<p>No se encontraron chefs con esos filtros.</p>"
+    return
+  }
+
+  filtrados.forEach(chef => container.appendChild(crearChefCard(chef)))
+}
+
+function configurarFiltros() {
+  document.getElementById("filtrar-precio").onclick = () => {
+    const min = parseInt(document.getElementById("precio-min").value)
+    const max = parseInt(document.getElementById("precio-max").value)
+    filtros.precioMin = isNaN(min) ? null : min
+    filtros.precioMax = isNaN(max) ? null : max
+    mostrarChefsFiltrados()
+  }
+  document.querySelectorAll(".btn-filtro-tipo").forEach(btn => {
+    btn.onclick = () => {
+      filtros.tipo = btn.dataset.tipo
+      mostrarChefsFiltrados()
+    }
+  })
+  document.getElementById("limpiar-filtros").onclick = () => {
+    filtros = { precioMin: null, precioMax: null, tipo: null }
+    document.getElementById("precio-min").value = ""
+    document.getElementById("precio-max").value = ""
+    mostrarChefsFiltrados()
   }
 }
 
@@ -91,7 +142,6 @@ function mostrarDetalleChef(chef) {
   detalle.scrollIntoView({ behavior: "smooth" })
 }
 
-// Reservar chef y enviar email
 async function reservarChef(event, chef) {
   event.preventDefault()
   const form = event.target
@@ -170,7 +220,6 @@ Reserva realizada el: ${new Date().toLocaleString()}
   }
 }
 
-// Mostrar reservas en el lateral
 function mostrarReservas() {
   const lista = document.getElementById("lista-reservas")
   lista.innerHTML = ""
@@ -188,7 +237,6 @@ function mostrarReservas() {
   })
 }
 
-// Utilidades UI
 function mostrarToast(mensaje) {
   const toast = document.getElementById("toast")
   toast.textContent = mensaje
@@ -210,7 +258,6 @@ function cerrarModal() {
   volverAlCatalogo()
 }
 
-// Botones y paneles
 function configurarBotones() {
   document.getElementById("toggle-reservas").addEventListener("click", () => {
     document.getElementById("reserva-lateral").classList.toggle("cerrado")
@@ -223,19 +270,20 @@ function configurarBotones() {
   }
 }
 
-
-
-
-
-// Mostrar/ocultar botón "Volver arriba"
+// Botón volver arriba
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("btn-top")
-  if (window.scrollY > 200) {
-    btn.style.display = "block"
-  } else {
-    btn.style.display = "none"
+  if (btn) {
+    if (window.scrollY > 200) {
+      btn.style.display = "block"
+    } else {
+      btn.style.display = "none"
+    }
   }
 })
-document.getElementById("btn-top").addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-})
+const btnTop = document.getElementById("btn-top")
+if (btnTop) {
+  btnTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  })
+}

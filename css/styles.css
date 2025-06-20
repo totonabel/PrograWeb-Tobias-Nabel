@@ -501,3 +501,31 @@ form button:hover {
     font-size: 1.2rem;
   }
 }
+
+
+.filtros-chef {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.filtros-chef label {
+  font-size: 1rem;
+}
+.filtros-chef input {
+  width: 90px;
+  margin-left: 5px;
+}
+.filtros-chef button {
+  background: #ff7043;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.filtros-chef button:hover {
+  background: #e2572e;
+}
