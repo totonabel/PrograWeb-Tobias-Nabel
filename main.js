@@ -84,6 +84,8 @@ function configurarFiltros() {
   document.querySelectorAll(".btn-filtro-tipo").forEach(btn => {
     btn.onclick = () => {
       filtros.tipo = btn.dataset.tipo
+      document.querySelectorAll(".btn-filtro-tipo").forEach(b => b.classList.remove("active"))
+      btn.classList.add("active")
       mostrarChefsFiltrados()
     }
   })
@@ -91,6 +93,7 @@ function configurarFiltros() {
     filtros = { precioMin: null, precioMax: null, tipo: null }
     document.getElementById("precio-min").value = ""
     document.getElementById("precio-max").value = ""
+    document.querySelectorAll(".btn-filtro-tipo").forEach(b => b.classList.remove("active"))
     mostrarChefsFiltrados()
   }
 }
@@ -270,7 +273,7 @@ function configurarBotones() {
   }
 }
 
-// Botón volver arriba
+
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("btn-top")
   if (btn) {

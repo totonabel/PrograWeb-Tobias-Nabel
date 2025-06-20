@@ -24,18 +24,20 @@
     <section id="chefs">
       <h2>Elegí tu Chef</h2>
       <form id="filtros-chef" class="filtros-chef">
-        <label>Precio mínimo:
-          <input type="number" id="precio-min" min="0" step="1000" placeholder="Mínimo">
-        </label>
-        <label>Precio máximo:
-          <input type="number" id="precio-max" min="0" step="1000" placeholder="Máximo">
-        </label>
-        <button type="button" id="filtrar-precio">Filtrar por precio</button>
-        <button type="button" data-tipo="reposteria" class="btn-filtro-tipo">Repostería</button>
-        <button type="button" data-tipo="vegetariana" class="btn-filtro-tipo">Vegetariana</button>
-        <button type="button" data-tipo="internacional" class="btn-filtro-tipo">Internacional</button>
-        <button type="button" data-tipo="tradicional" class="btn-filtro-tipo">Tradicional</button>
-        <button type="button" id="limpiar-filtros">Limpiar filtros</button>
+        <div class="filtro-group">
+          <label for="precio-min">Precio</label>
+          <input type="number" id="precio-min" min="0" step="1000" placeholder="Mín.">
+          <span>-</span>
+          <input type="number" id="precio-max" min="0" step="1000" placeholder="Máx.">
+          <button type="button" id="filtrar-precio" title="Filtrar por precio">🔍</button>
+        </div>
+        <div class="filtro-group">
+          <button type="button" data-tipo="reposteria" class="btn-filtro-tipo filtro-btn">Repostería</button>
+          <button type="button" data-tipo="vegetariana" class="btn-filtro-tipo filtro-btn">Vegetariana</button>
+          <button type="button" data-tipo="internacional" class="btn-filtro-tipo filtro-btn">Internacional</button>
+          <button type="button" data-tipo="tradicional" class="btn-filtro-tipo filtro-btn">Tradicional</button>
+          <button type="button" id="limpiar-filtros" class="filtro-btn limpiar">Limpiar</button>
+        </div>
       </form>
       <div id="chef-container"></div>
     </section>

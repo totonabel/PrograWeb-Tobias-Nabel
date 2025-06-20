@@ -529,3 +529,69 @@ form button:hover {
 .filtros-chef button:hover {
   background: #e2572e;
 }
+
+.filtros-chef {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 18px 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filtro-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filtro-group label {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.filtro-group input[type="number"] {
+  width: 80px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.filtro-group span {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.filtro-btn {
+  background: #ff7043;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.filtro-btn:hover, .filtro-btn.active {
+  background: #e2572e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.filtro-btn.limpiar {
+  background: #bbb;
+  color: #fff;
+}
+
+.filtro-btn.limpiar:hover {
+  background: #888;
+}
