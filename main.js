@@ -35,7 +35,7 @@ function eliminarReserva(index) {
   reservas.splice(index, 1)
   guardarReservas(reservas)
   mostrarReservas()
-  mostrarToast("Reserva eliminada")
+  alert("Reserva eliminada")
 }
 
 async function cargarChefs() {
@@ -53,14 +53,14 @@ function mostrarChefsFiltrados() {
   container.innerHTML = ""
   let filtrados = chefsData
 
-  // Filtrado por precio
+  
   if (filtros.precioMin !== null) {
     filtrados = filtrados.filter(chef => chef.precio >= filtros.precioMin)
   }
   if (filtros.precioMax !== null) {
     filtrados = filtrados.filter(chef => chef.precio <= filtros.precioMax)
   }
-  // Filtrado por tipo
+  
   if (filtros.tipo) {
     filtrados = filtrados.filter(chef => chef.tipo === filtros.tipo)
   }
@@ -207,17 +207,15 @@ Reserva realizada el: ${new Date().toLocaleString()}
     const result = await response.json()
 
     if (result.success) {
-      document.getElementById("modal-confirmacion").classList.remove("hidden")
+      alert("Reserva guardada correctamente")
       form.reset()
-      mostrarToast("✅ Email enviado correctamente")
     } else {
       throw new Error(result.message || "Error al enviar email")
     }
   } catch (error) {
-    console.error("Error:", error)
-    mostrarToast("⚠️ Reserva guardada, pero error al enviar email")
-    document.getElementById("modal-confirmacion").classList.remove("hidden")
-  } finally {
+  console.error("Error:", error)
+  alert("Error al guardar la reserva")
+} finally {
     submitBtn.disabled = false
     submitBtn.textContent = originalText
   }
@@ -240,26 +238,13 @@ function mostrarReservas() {
   })
 }
 
-function mostrarToast(mensaje) {
-  const toast = document.getElementById("toast")
-  toast.textContent = mensaje
-  toast.classList.remove("hidden")
-  toast.classList.add("visible")
-  setTimeout(() => {
-    toast.classList.remove("visible")
-    toast.classList.add("hidden")
-  }, 3000)
-}
+
 
 function volverAlCatalogo() {
   document.getElementById("chefs").scrollIntoView({ behavior: "smooth" })
   document.getElementById("detalle-chef").style.display = "none"
 }
 
-function cerrarModal() {
-  document.getElementById("modal-confirmacion").classList.add("hidden")
-  volverAlCatalogo()
-}
 
 function configurarBotones() {
   document.getElementById("toggle-reservas").addEventListener("click", () => {
