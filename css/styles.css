@@ -196,31 +196,6 @@ form button:hover {
   background-color: #d90000;
 }
 
-#toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #2e7d32;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
-  z-index: 2000;
-}
-
-#toast.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#toast.hidden {
-  display: none;
-}
-
 .volver-btn {
   margin-top: 20px;
   background-color: #ccc;
@@ -325,50 +300,7 @@ form button:hover {
   animation: modalFadeIn 0.3s ease-out;
 }
 
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
 
-.success-icon {
-  font-size: 4rem;
-  color: #2e7d32;
-  margin-bottom: 20px;
-}
-
-.modal-content h2 {
-  color: #2e7d32;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-}
-
-.modal-content p {
-  margin-bottom: 15px;
-  color: #666;
-  line-height: 1.5;
-}
-
-.btn-modal {
-  background-color: #ff7043;
-  color: white;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-modal:hover {
-  background-color: #e2572e;
-}
 
 @media (max-width: 600px) {
   body {
@@ -403,7 +335,7 @@ form button:hover {
     transform: scale(1);
   }
 }
-/* Botón volver arriba */
+
 #btn-top {
   display: none;
   position: fixed;
@@ -425,7 +357,7 @@ form button:hover {
   background-color: #e2572e;
 }
 
-/* Mejora visual cards y detalle */
+
 .chef-card {
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -435,7 +367,7 @@ form button:hover {
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
-/* Animación y mejora en detalle chef */
+
 #detalle-chef {
   animation: fadeIn 0.5s;
   border-radius: 12px;
@@ -448,7 +380,6 @@ form button:hover {
   to { opacity: 1; transform: translateY(0);}
 }
 
-/* Mejora visual modal */
 .modal-content {
   animation: modalFadeIn 0.5s;
   border-radius: 12px;
@@ -547,10 +478,10 @@ form button:hover {
 
 .filtro-group {
   display: flex;
-  flex-direction: row; /* Esto es lo importante */
+  flex-direction: row; 
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap; /* Para que se acomoden si no entran */
+  flex-wrap: wrap; 
 }
 
 .filtro-group label {
