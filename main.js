@@ -242,6 +242,10 @@ function mostrarReservas() {
     const texto = document.createElement("span")
     texto.textContent = `Con ${r.chef} el ${r.fecha} a las ${r.hora}`
 
+    const contenedorBotones = document.createElement("div")
+    contenedorBotones.style.display = "flex"
+    contenedorBotones.style.gap = "6px"
+
    
     const botonEliminar = document.createElement("button")
     botonEliminar.textContent = "Eliminar"

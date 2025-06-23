@@ -598,3 +598,22 @@ form button:hover {
   margin-left: 6px;
   margin-top: 0;
 }
+
+@media (max-width: 600px) {
+  #lista-reservas li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  #lista-reservas li > div {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  #lista-reservas button {
+    width: 48%;
+    min-width: 80px;
+    font-size: 1rem;
+  }
+}
