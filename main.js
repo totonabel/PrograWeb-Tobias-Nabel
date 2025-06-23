@@ -285,6 +285,9 @@ function configurarBotones() {
   }
 }
 
+document.getElementById("cerrar-reservas").addEventListener("click", () => {
+  document.getElementById("reserva-lateral").classList.add("cerrado")
+})
 
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("btn-top")

@@ -617,3 +617,25 @@ form button:hover {
     font-size: 1rem;
   }
 }
+
+
+#cerrar-reservas {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #ff7043;
+  cursor: pointer;
+  z-index: 2000;
+  padding: 0 8px;
+  line-height: 1;
+}
+#cerrar-reservas:active {
+  color: #d90000;
+}
+#reserva-lateral {
+  position: fixed;
+ 
+}
