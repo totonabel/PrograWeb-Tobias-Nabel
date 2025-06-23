@@ -543,3 +543,58 @@ form button:hover {
 .editar-btn:hover {
   background-color: #ffe066;
 }
+
+
+@media (max-width: 600px) {
+  #reserva-lateral {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100vw;
+    max-width: 100vw;
+    height: 45vh;
+    min-height: 180px;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+    padding: 18px 8px 8px 8px;
+    font-size: 1rem;
+    z-index: 1001;
+    overflow-y: auto;
+  }
+  #lista-reservas {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 1rem;
+  }
+  #lista-reservas li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+    background: #fff3e0;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  #lista-reservas button {
+    width: 100%;
+    margin: 2px 0 0 0;
+    font-size: 1rem;
+  }
+}
+
+
+#lista-reservas li {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#lista-reservas button {
+  width: auto;
+  min-width: 80px;
+  margin-left: 6px;
+  margin-top: 0;
+}
