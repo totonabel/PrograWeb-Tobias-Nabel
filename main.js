@@ -37,7 +37,20 @@ function eliminarReserva(index) {
   mostrarReservas()
   alert("Reserva eliminada")
 }
+function editarReserva(index, reserva) {
+  
+  const nuevaFecha = prompt("Nueva fecha (AAAA-MM-DD):", reserva.fecha)
+  if (!nuevaFecha) return
+  const nuevaHora = prompt("Nueva hora (HH:MM):", reserva.hora)
+  if (!nuevaHora) return
 
+  const reservas = obtenerReservas()
+  reservas[index].fecha = nuevaFecha
+  reservas[index].hora = nuevaHora
+  guardarReservas(reservas)
+  mostrarReservas()
+  alert("Reserva editada correctamente")
+}
 async function cargarChefs() {
   try {
     const res = await fetch("data/chefs.json")
@@ -228,12 +241,22 @@ function mostrarReservas() {
     const li = document.createElement("li")
     const texto = document.createElement("span")
     texto.textContent = `Con ${r.chef} el ${r.fecha} a las ${r.hora}`
-    const boton = document.createElement("button")
-    boton.textContent = "Eliminar"
-    boton.className = "cancelar-btn"
-    boton.onclick = () => eliminarReserva(index)
+
+   
+    const botonEliminar = document.createElement("button")
+    botonEliminar.textContent = "Eliminar"
+    botonEliminar.className = "cancelar-btn"
+    botonEliminar.onclick = () => eliminarReserva(index)
+
+   
+    const botonEditar = document.createElement("button")
+    botonEditar.textContent = "Editar"
+    botonEditar.className = "editar-btn"
+    botonEditar.onclick = () => editarReserva(index, r)
+
     li.appendChild(texto)
-    li.appendChild(boton)
+    li.appendChild(botonEditar)
+    li.appendChild(botonEliminar)
     lista.appendChild(li)
   })
 }

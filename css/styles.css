@@ -528,3 +528,18 @@ form button:hover {
 .filtro-btn.limpiar:hover {
   background: #888;
 }
+
+.editar-btn {
+  background-color: #ffd600;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: background-color 0.2s;
+}
+.editar-btn:hover {
+  background-color: #ffe066;
+}
