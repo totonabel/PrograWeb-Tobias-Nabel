@@ -615,3 +615,25 @@ form button:hover {
   position: fixed;
  
 }
+
+
+@media (max-width: 900px) {
+  #lista-reservas li {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  #lista-reservas li > div,
+  #lista-reservas li .botones-reserva {
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100%;
+    display: flex;
+  }
+  #lista-reservas button {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    font-size: 1.08rem !important;
+  }
+}

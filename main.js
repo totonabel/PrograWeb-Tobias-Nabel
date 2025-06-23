@@ -243,28 +243,28 @@ function mostrarReservas() {
     texto.textContent = `Con ${r.chef} el ${r.fecha} a las ${r.hora}`
 
     const contenedorBotones = document.createElement("div")
+    contenedorBotones.className = "botones-reserva"
     contenedorBotones.style.display = "flex"
     contenedorBotones.style.gap = "6px"
 
-   
-    const botonEliminar = document.createElement("button")
-    botonEliminar.textContent = "Eliminar"
-    botonEliminar.className = "cancelar-btn"
-    botonEliminar.onclick = () => eliminarReserva(index)
-
-   
     const botonEditar = document.createElement("button")
     botonEditar.textContent = "Editar"
     botonEditar.className = "editar-btn"
     botonEditar.onclick = () => editarReserva(index, r)
 
+    const botonEliminar = document.createElement("button")
+    botonEliminar.textContent = "Eliminar"
+    botonEliminar.className = "cancelar-btn"
+    botonEliminar.onclick = () => eliminarReserva(index)
+
+    contenedorBotones.appendChild(botonEditar)
+    contenedorBotones.appendChild(botonEliminar)
+
     li.appendChild(texto)
-    li.appendChild(botonEditar)
-    li.appendChild(botonEliminar)
+    li.appendChild(contenedorBotones)
     lista.appendChild(li)
   })
 }
-
 
 
 function volverAlCatalogo() {
