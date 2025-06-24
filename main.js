@@ -127,6 +127,11 @@ function crearChefCard(chef) {
 function mostrarDetalleChef(chef) {
   const detalle = document.getElementById("detalle-chef")
   const contenido = document.getElementById("detalle-contenido")
+  const hoy = new Date()
+  const yyyy = hoy.getFullYear()
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0')
+  const dd = String(hoy.getDate()).padStart(2, '0')
+  const fechaMin = `${yyyy}-${mm}-${dd}`
   detalle.style.display = "block"
   contenido.innerHTML = `
     <h3>${chef.nombre}</h3>
@@ -144,7 +149,7 @@ function mostrarDetalleChef(chef) {
       <label for="email">Tu email</label>
       <input type="email" name="email" required>
       <label for="fecha">Ingrese la fecha</label>
-      <input type="date" name="fecha" required>
+      <input type="date" name="fecha" required min="${fechaMin}">
       <label for="hora">Ingrese la hora</label>
       <input type="time" name="hora" required>
       <label for="mensaje">Mensaje adicional (opcional)</label>
